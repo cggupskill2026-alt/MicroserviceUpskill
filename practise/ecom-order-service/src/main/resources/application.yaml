@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: ecom-order-service
+logging:
+  level:
+    cgg.example.ecom_order_service.client: DEBUG

@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: ecom-inventory-service
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/microdb}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:root}
+  jpa: 
+    hibernate:
+      ddl-auto: update
+      show-sql: true
+
+
+server:
+ port: 8081
+ 
+eureka:
+  client:
+    registry-fetch-interval-seconds: 30
+  instance:
+    lease-renewal-interval-in-seconds: 5
+
+ 
