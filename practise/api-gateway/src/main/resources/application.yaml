@@ -1,5 +1,35 @@
+
+server:
+  port: 9090
+
 spring:
   application:
     name: api-gateway
-server:
-  port: 9090
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+          - id: ecom-order-service
+            uri: lb://ecom-order-service
+            predicates:
+              - Path= /order/**
+          - id: ecom-inventory-service
+            uri: lb://ecom-inventory-service
+            predicates:
+              - Path= /inventory/**		
+logging:
+  level:
+    org.springframework.cloud.gateway: TRACE
+    org.springframework.cloud.loadbalancer: DEBUG
+eureka:
+  client:
+   service-url:
+    defaultZone: http://localhost:8761/eureka/
+   register-with-eureka: true
+   fetch-registry: true	
+  instance:
+   prefer-ip-address: true
+   ip-address: 127.0.0.1
+   instance-id: ${spring.application.name}:${server.port}   			
+          

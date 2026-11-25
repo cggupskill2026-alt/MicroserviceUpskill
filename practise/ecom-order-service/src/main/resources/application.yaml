@@ -3,4 +3,20 @@ spring:
     name: ecom-order-service
 logging:
   level:
-    cgg.example.ecom_order_service.client: DEBUG
+    "[cgg.example.ecom_order_service.client]": DEBUG
+    "[com.netflix.discovery]": DEBUG
+    "[org.springframework.cloud.netflix.eureka]": DEBUG 		
+
+eureka:
+  client:
+    registry-fetch-interval-seconds: 30
+    should-unregister-on-shutdown: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+    instance-id: ${spring.application.name}:${server.port}  
+server:
+  shutdown: graceful
+  port: 8080

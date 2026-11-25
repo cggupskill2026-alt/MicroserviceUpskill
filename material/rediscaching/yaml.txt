@@ -1,0 +1,20 @@
+data:
+ redis:
+  host: ${REDIS_HOST:localhost}
+  port: ${REDIS_PORT:6379}
+  password: ${REDIS_PASSWORD:}
+  connection-timeout: 2s
+  timeout: 1s
+  ssl:
+   enabled: ${REDIS_SSL:false}
+cache:
+ type: redis
+ cache-names: product-details,product-pages,product-lists,product-searches
+ redis:
+  time-to-live: 10m
+  cache-null-values: false
+  key-prefix: "ecom:"
+
+mvc:
+ problemdetails:
+  enabled: true

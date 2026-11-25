@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: ecom-backend-demo
+  datasource:
+    url: jdbc:postgresql://localhost:5432/redisdb
+    username: postgres
+    password: root
+  jpa:
+   hibernate:
+      ddl-auto: validate
+   show-sql: true
+  data:
+    redis:
+      host: localhost
+      port: 6379
+  cache:
+    type: redis
+    cache-names:
+    - products
+    redis:
+      time-to-live: 10m
+      cache-null-values: false            
+
+server:
+  port: 9091
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+
+
+

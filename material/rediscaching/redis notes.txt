@@ -1,0 +1,25 @@
+set name "Fathima"
+get name
+set lastname "Fathima"
+get lastname
+set count 1
+get count
+incr count
+get count
+del name
+get name
+lpush courses "java"
+lpush courses "python"
+rpush courses "react"
+llen courses
+lrange courses 0 2
+lpop courses
+sadd students "Fathima"
+sadd students "D.Fathima"
+smembers students
+hset user:1 name "Fathima" age 28 city "hyd"
+hget user:1 name
+hget user:1 age
+hgetall user:1
+set token "abc80389483"
+expire token 60

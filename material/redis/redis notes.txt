@@ -1,0 +1,46 @@
+set name "Fathima"
+get name
+set lastname "Fathima"
+get lastname
+set count 1
+get count
+incr count
+get count
+del name
+get name
+lpush courses "java"
+lpush courses "python"
+rpush courses "react"
+llen courses
+lrange courses 0 2
+lpop courses
+sadd students "Fathima"
+sadd students "D.Fathima"
+smembers students
+hset user:1 name "Fathima" age 28 city "hyd"
+hget user:1 name
+hget user:1 age
+hgetall user:1
+set token "abc80389483"
+expire token 60
+create table if not exists products(
+	id bigserial primary key,
+	name varchar(255) not null,
+	category varchar(100) not null,
+	price numeric (12,2) not null,
+	stock int not null,
+	created_at timestamp default CURRENT_TIMESTAMP);
+INSERT INTO products (name, category, price, stock)
+SELECT
+    'Product-' || gs,
+    CASE
+        WHEN gs % 5 = 0 THEN 'Electronics'
+        WHEN gs % 5 = 1 THEN 'Furniture'
+        WHEN gs % 5 = 2 THEN 'Clothing'
+        WHEN gs % 5 = 3 THEN 'Books'
+        ELSE 'Groceries'
+    END,
+    ROUND((RANDOM() * 10000 + 100)::numeric, 2),
+    FLOOR(RANDOM() * 500 + 1)::int
+FROM generate_series(1, 100000) AS gs;
+keys
