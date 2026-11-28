@@ -18,7 +18,12 @@ public class InventoryServiceImpl implements InventoryService {
 	public Product checkStock(long productId) {
 		Optional<Product> inv=inventoryRepository.findById(productId);
 		if(inv.isPresent()) {
-		return inv.get();
+			
+		 Product p=inv.get();
+		 if(p.getQuantity()>0) {
+			 p.setQuantity(p.getQuantity()-1);
+		 }
+		 return p;
 		}
 		return null;
 	}

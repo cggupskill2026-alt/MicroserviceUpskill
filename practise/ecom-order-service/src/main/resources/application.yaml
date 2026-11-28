@@ -1,6 +1,37 @@
 spring:
   application:
     name: ecom-order-service
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/microdb}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:root}
+  jpa: 
+    hibernate:
+     ddl-auto: update
+     show-sql: true	
+  kafka:
+    bootstrap-servers:
+    - localhost:9092
+    consumer:
+      group-id: order-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+       spring:
+         json:
+          trusted:
+            packages: "*"
+            value:
+               type: cgg.example.common-service.events.InventoryResponseEvent
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    
+      
+        
+        
+                
 logging:
   level:
     "[cgg.example.ecom_order_service.client]": DEBUG
